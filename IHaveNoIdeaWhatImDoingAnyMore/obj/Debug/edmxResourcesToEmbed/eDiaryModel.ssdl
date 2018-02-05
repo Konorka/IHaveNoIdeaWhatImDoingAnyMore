@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="eDiaryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Class">
+    <Key>
+      <PropertyRef Name="class_id" />
+    </Key>
+    <Property Name="class_id" Type="int" Nullable="false" />
+    <Property Name="class_name" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Lesson">
+    <Key>
+      <PropertyRef Name="lesson_id" />
+    </Key>
+    <Property Name="lesson_id" Type="int" Nullable="false" />
+    <Property Name="lesson_name" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Score">
+    <Key>
+      <PropertyRef Name="score_id" />
+    </Key>
+    <Property Name="score_id" Type="int" Nullable="false" />
+    <Property Name="score" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="score_test_id" Type="int" Nullable="false" />
+    <Property Name="score_student_om_id" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="student_om_id" />
+    </Key>
+    <Property Name="student_om_id" Type="bigint" Nullable="false" />
+    <Property Name="student_id" Type="bigint" Nullable="false" />
+    <Property Name="student_first_name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="student_last_name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="student_birth_date" Type="date" Nullable="false" />
+    <Property Name="student_gender" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="student_city" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="student_zip" Type="int" Nullable="false" />
+    <Property Name="student_home_address" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="student_email" Type="varchar" MaxLength="50" />
+    <Property Name="student_home_phone" Type="varchar" MaxLength="20" />
+    <Property Name="student_mobile" Type="varchar" MaxLength="20" />
+    <Property Name="student_class_id" Type="int" Nullable="false" />
+    <Property Name="student_user_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Teacher">
+    <Key>
+      <PropertyRef Name="teacher_om_id" />
+    </Key>
+    <Property Name="teacher_om_id" Type="bigint" Nullable="false" />
+    <Property Name="teacher_first_name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="teacher_last_name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="teacher_birth_date" Type="date" Nullable="false" />
+    <Property Name="teacher_gender" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="teacher_city" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="teacher_zip" Type="int" Nullable="false" />
+    <Property Name="teacher_home_address" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="teacher_email" Type="varchar" MaxLength="30" />
+    <Property Name="teacher_home_phone" Type="varchar" MaxLength="20" />
+    <Property Name="teacher_mobile" Type="varchar" MaxLength="20" />
+    <Property Name="teacher_class_id" Type="int" />
+    <Property Name="teacher_lesson_id" Type="int" Nullable="false" />
+    <Property Name="teacher_user_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Test">
+    <Key>
+      <PropertyRef Name="test_id" />
+    </Key>
+    <Property Name="test_id" Type="int" Nullable="false" />
+    <Property Name="test_lesson_id" Type="int" Nullable="false" />
+    <Property Name="test_date" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="bigint" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="user_access_rank" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="eDiaryModelStoreContainer">
+    <EntitySet Name="Class" EntityType="Self.Class" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Lesson" EntityType="Self.Lesson" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Score" EntityType="Self.Score" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Test" EntityType="Self.Test" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

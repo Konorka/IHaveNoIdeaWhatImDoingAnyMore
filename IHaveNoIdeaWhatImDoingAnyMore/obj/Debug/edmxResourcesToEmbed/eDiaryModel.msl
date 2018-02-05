@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="eDiaryModelStoreContainer" CdmEntityContainer="eDiaryDBModel">
+    <EntitySetMapping Name="Class">
+      <EntityTypeMapping TypeName="eDiaryModel.Class">
+        <MappingFragment StoreEntitySet="Class">
+          <ScalarProperty Name="class_id" ColumnName="class_id" />
+          <ScalarProperty Name="class_name" ColumnName="class_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Lesson">
+      <EntityTypeMapping TypeName="eDiaryModel.Lesson">
+        <MappingFragment StoreEntitySet="Lesson">
+          <ScalarProperty Name="lesson_id" ColumnName="lesson_id" />
+          <ScalarProperty Name="lesson_name" ColumnName="lesson_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Score">
+      <EntityTypeMapping TypeName="eDiaryModel.Score">
+        <MappingFragment StoreEntitySet="Score">
+          <ScalarProperty Name="score_id" ColumnName="score_id" />
+          <ScalarProperty Name="score1" ColumnName="score" />
+          <ScalarProperty Name="score_test_id" ColumnName="score_test_id" />
+          <ScalarProperty Name="score_student_om_id" ColumnName="score_student_om_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Student">
+      <EntityTypeMapping TypeName="eDiaryModel.Student">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="student_om_id" ColumnName="student_om_id" />
+          <ScalarProperty Name="student_id" ColumnName="student_id" />
+          <ScalarProperty Name="student_first_name" ColumnName="student_first_name" />
+          <ScalarProperty Name="student_last_name" ColumnName="student_last_name" />
+          <ScalarProperty Name="student_birth_date" ColumnName="student_birth_date" />
+          <ScalarProperty Name="student_gender" ColumnName="student_gender" />
+          <ScalarProperty Name="student_city" ColumnName="student_city" />
+          <ScalarProperty Name="student_zip" ColumnName="student_zip" />
+          <ScalarProperty Name="student_home_address" ColumnName="student_home_address" />
+          <ScalarProperty Name="student_email" ColumnName="student_email" />
+          <ScalarProperty Name="student_home_phone" ColumnName="student_home_phone" />
+          <ScalarProperty Name="student_mobile" ColumnName="student_mobile" />
+          <ScalarProperty Name="student_class_id" ColumnName="student_class_id" />
+          <ScalarProperty Name="student_user_id" ColumnName="student_user_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Teacher">
+      <EntityTypeMapping TypeName="eDiaryModel.Teacher">
+        <MappingFragment StoreEntitySet="Teacher">
+          <ScalarProperty Name="teacher_om_id" ColumnName="teacher_om_id" />
+          <ScalarProperty Name="teacher_first_name" ColumnName="teacher_first_name" />
+          <ScalarProperty Name="teacher_last_name" ColumnName="teacher_last_name" />
+          <ScalarProperty Name="teacher_birth_date" ColumnName="teacher_birth_date" />
+          <ScalarProperty Name="teacher_gender" ColumnName="teacher_gender" />
+          <ScalarProperty Name="teacher_city" ColumnName="teacher_city" />
+          <ScalarProperty Name="teacher_zip" ColumnName="teacher_zip" />
+          <ScalarProperty Name="teacher_home_address" ColumnName="teacher_home_address" />
+          <ScalarProperty Name="teacher_email" ColumnName="teacher_email" />
+          <ScalarProperty Name="teacher_home_phone" ColumnName="teacher_home_phone" />
+          <ScalarProperty Name="teacher_mobile" ColumnName="teacher_mobile" />
+          <ScalarProperty Name="teacher_class_id" ColumnName="teacher_class_id" />
+          <ScalarProperty Name="teacher_lesson_id" ColumnName="teacher_lesson_id" />
+          <ScalarProperty Name="teacher_user_id" ColumnName="teacher_user_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Test">
+      <EntityTypeMapping TypeName="eDiaryModel.Test">
+        <MappingFragment StoreEntitySet="Test">
+          <ScalarProperty Name="test_id" ColumnName="test_id" />
+          <ScalarProperty Name="test_lesson_id" ColumnName="test_lesson_id" />
+          <ScalarProperty Name="test_date" ColumnName="test_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="eDiaryModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="user_access_rank" ColumnName="user_access_rank" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,16 @@
+﻿<Window x:Class="IHaveNoIdeaWhatImDoingAnyMore.LoginView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IHaveNoIdeaWhatImDoingAnyMore"
+        mc:Ignorable="d"
+        Title="LoginView" Height="258.239" Width="220.739">
+    <Grid  Background="#2e3137">
+        <TextBox Text="{Binding Username}" x:Name="usernameTextBox" HorizontalAlignment="Left" Background="#545d6a" Foreground="White" Height="23" Margin="10,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="185"/>
+        <PasswordBox x:Name="passwordPasswordBox"  HorizontalAlignment="Left"  Background="#545d6a" Foreground="White" Margin="10,113,0,0" VerticalAlignment="Top" Width="185" Height="24"/>
+        <Button Click="LoginBtnClick" TabIndex="3" Background="#545d6a" Foreground="White" Content="Bejelentkezés" HorizontalAlignment="Left" Margin="56,160,0,0" VerticalAlignment="Top" Width="92" Height="30"/>
+        <Label Content="Felhasználónév:" Foreground="White" HorizontalAlignment="Left" Margin="11,38,0,0" VerticalAlignment="Top"/>
+        <Label Content="Jelszó:" Foreground="White" HorizontalAlignment="Left" Margin="11,87,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Window>

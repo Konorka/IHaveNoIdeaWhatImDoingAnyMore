@@ -1,0 +1,301 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="eDiaryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="class_id" />
+          </Key>
+          <Property Name="class_id" Type="int" Nullable="false" />
+          <Property Name="class_name" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Lesson">
+          <Key>
+            <PropertyRef Name="lesson_id" />
+          </Key>
+          <Property Name="lesson_id" Type="int" Nullable="false" />
+          <Property Name="lesson_name" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Score">
+          <Key>
+            <PropertyRef Name="score_id" />
+          </Key>
+          <Property Name="score_id" Type="int" Nullable="false" />
+          <Property Name="score" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="score_test_id" Type="int" Nullable="false" />
+          <Property Name="score_student_om_id" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="student_om_id" />
+          </Key>
+          <Property Name="student_om_id" Type="bigint" Nullable="false" />
+          <Property Name="student_id" Type="bigint" Nullable="false" />
+          <Property Name="student_first_name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="student_last_name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="student_birth_date" Type="date" Nullable="false" />
+          <Property Name="student_gender" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="student_city" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="student_zip" Type="int" Nullable="false" />
+          <Property Name="student_home_address" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="student_email" Type="varchar" MaxLength="50" />
+          <Property Name="student_home_phone" Type="varchar" MaxLength="20" />
+          <Property Name="student_mobile" Type="varchar" MaxLength="20" />
+          <Property Name="student_class_id" Type="int" Nullable="false" />
+          <Property Name="student_user_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="teacher_om_id" />
+          </Key>
+          <Property Name="teacher_om_id" Type="bigint" Nullable="false" />
+          <Property Name="teacher_first_name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="teacher_last_name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="teacher_birth_date" Type="date" Nullable="false" />
+          <Property Name="teacher_gender" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="teacher_city" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="teacher_zip" Type="int" Nullable="false" />
+          <Property Name="teacher_home_address" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="teacher_email" Type="varchar" MaxLength="30" />
+          <Property Name="teacher_home_phone" Type="varchar" MaxLength="20" />
+          <Property Name="teacher_mobile" Type="varchar" MaxLength="20" />
+          <Property Name="teacher_class_id" Type="int" />
+          <Property Name="teacher_lesson_id" Type="int" Nullable="false" />
+          <Property Name="teacher_user_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Test">
+          <Key>
+            <PropertyRef Name="test_id" />
+          </Key>
+          <Property Name="test_id" Type="int" Nullable="false" />
+          <Property Name="test_lesson_id" Type="int" Nullable="false" />
+          <Property Name="test_date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="bigint" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="user_access_rank" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="eDiaryModelStoreContainer">
+          <EntitySet Name="Class" EntityType="Self.Class" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lesson" EntityType="Self.Lesson" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Score" EntityType="Self.Score" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Test" EntityType="Self.Test" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="eDiaryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="class_id" />
+          </Key>
+          <Property Name="class_id" Type="Int32" Nullable="false" />
+          <Property Name="class_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Lesson">
+          <Key>
+            <PropertyRef Name="lesson_id" />
+          </Key>
+          <Property Name="lesson_id" Type="Int32" Nullable="false" />
+          <Property Name="lesson_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Score">
+          <Key>
+            <PropertyRef Name="score_id" />
+          </Key>
+          <Property Name="score_id" Type="Int32" Nullable="false" />
+          <Property Name="score1" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="score_test_id" Type="Int32" Nullable="false" />
+          <Property Name="score_student_om_id" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="student_om_id" />
+          </Key>
+          <Property Name="student_om_id" Type="Int64" Nullable="false" />
+          <Property Name="student_id" Type="Int64" Nullable="false" />
+          <Property Name="student_first_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="student_last_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="student_birth_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="student_gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="student_city" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="student_zip" Type="Int32" Nullable="false" />
+          <Property Name="student_home_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="student_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="student_home_phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="student_mobile" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="student_class_id" Type="Int32" Nullable="false" />
+          <Property Name="student_user_id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="teacher_om_id" />
+          </Key>
+          <Property Name="teacher_om_id" Type="Int64" Nullable="false" />
+          <Property Name="teacher_first_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="teacher_last_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="teacher_birth_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="teacher_gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="teacher_city" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="teacher_zip" Type="Int32" Nullable="false" />
+          <Property Name="teacher_home_address" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="teacher_email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="teacher_home_phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="teacher_mobile" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="teacher_class_id" Type="Int32" />
+          <Property Name="teacher_lesson_id" Type="Int32" Nullable="false" />
+          <Property Name="teacher_user_id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Test">
+          <Key>
+            <PropertyRef Name="test_id" />
+          </Key>
+          <Property Name="test_id" Type="Int32" Nullable="false" />
+          <Property Name="test_lesson_id" Type="Int32" Nullable="false" />
+          <Property Name="test_date" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int64" Nullable="false" />
+          <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="user_access_rank" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="eDiaryDBModel" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Class" EntityType="Self.Class" />
+          <EntitySet Name="Lesson" EntityType="Self.Lesson" />
+          <EntitySet Name="Score" EntityType="Self.Score" />
+          <EntitySet Name="Student" EntityType="Self.Student" />
+          <EntitySet Name="Teacher" EntityType="Self.Teacher" />
+          <EntitySet Name="Test" EntityType="Self.Test" />
+          <EntitySet Name="User" EntityType="Self.User" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="eDiaryModelStoreContainer" CdmEntityContainer="eDiaryDBModel">
+          <EntitySetMapping Name="Class">
+            <EntityTypeMapping TypeName="eDiaryModel.Class">
+              <MappingFragment StoreEntitySet="Class">
+                <ScalarProperty Name="class_id" ColumnName="class_id" />
+                <ScalarProperty Name="class_name" ColumnName="class_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lesson">
+            <EntityTypeMapping TypeName="eDiaryModel.Lesson">
+              <MappingFragment StoreEntitySet="Lesson">
+                <ScalarProperty Name="lesson_id" ColumnName="lesson_id" />
+                <ScalarProperty Name="lesson_name" ColumnName="lesson_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Score">
+            <EntityTypeMapping TypeName="eDiaryModel.Score">
+              <MappingFragment StoreEntitySet="Score">
+                <ScalarProperty Name="score_id" ColumnName="score_id" />
+                <ScalarProperty Name="score1" ColumnName="score" />
+                <ScalarProperty Name="score_test_id" ColumnName="score_test_id" />
+                <ScalarProperty Name="score_student_om_id" ColumnName="score_student_om_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Student">
+            <EntityTypeMapping TypeName="eDiaryModel.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="student_om_id" ColumnName="student_om_id" />
+                <ScalarProperty Name="student_id" ColumnName="student_id" />
+                <ScalarProperty Name="student_first_name" ColumnName="student_first_name" />
+                <ScalarProperty Name="student_last_name" ColumnName="student_last_name" />
+                <ScalarProperty Name="student_birth_date" ColumnName="student_birth_date" />
+                <ScalarProperty Name="student_gender" ColumnName="student_gender" />
+                <ScalarProperty Name="student_city" ColumnName="student_city" />
+                <ScalarProperty Name="student_zip" ColumnName="student_zip" />
+                <ScalarProperty Name="student_home_address" ColumnName="student_home_address" />
+                <ScalarProperty Name="student_email" ColumnName="student_email" />
+                <ScalarProperty Name="student_home_phone" ColumnName="student_home_phone" />
+                <ScalarProperty Name="student_mobile" ColumnName="student_mobile" />
+                <ScalarProperty Name="student_class_id" ColumnName="student_class_id" />
+                <ScalarProperty Name="student_user_id" ColumnName="student_user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teacher">
+            <EntityTypeMapping TypeName="eDiaryModel.Teacher">
+              <MappingFragment StoreEntitySet="Teacher">
+                <ScalarProperty Name="teacher_om_id" ColumnName="teacher_om_id" />
+                <ScalarProperty Name="teacher_first_name" ColumnName="teacher_first_name" />
+                <ScalarProperty Name="teacher_last_name" ColumnName="teacher_last_name" />
+                <ScalarProperty Name="teacher_birth_date" ColumnName="teacher_birth_date" />
+                <ScalarProperty Name="teacher_gender" ColumnName="teacher_gender" />
+                <ScalarProperty Name="teacher_city" ColumnName="teacher_city" />
+                <ScalarProperty Name="teacher_zip" ColumnName="teacher_zip" />
+                <ScalarProperty Name="teacher_home_address" ColumnName="teacher_home_address" />
+                <ScalarProperty Name="teacher_email" ColumnName="teacher_email" />
+                <ScalarProperty Name="teacher_home_phone" ColumnName="teacher_home_phone" />
+                <ScalarProperty Name="teacher_mobile" ColumnName="teacher_mobile" />
+                <ScalarProperty Name="teacher_class_id" ColumnName="teacher_class_id" />
+                <ScalarProperty Name="teacher_lesson_id" ColumnName="teacher_lesson_id" />
+                <ScalarProperty Name="teacher_user_id" ColumnName="teacher_user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Test">
+            <EntityTypeMapping TypeName="eDiaryModel.Test">
+              <MappingFragment StoreEntitySet="Test">
+                <ScalarProperty Name="test_id" ColumnName="test_id" />
+                <ScalarProperty Name="test_lesson_id" ColumnName="test_lesson_id" />
+                <ScalarProperty Name="test_date" ColumnName="test_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="eDiaryModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="user_access_rank" ColumnName="user_access_rank" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
