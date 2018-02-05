@@ -82,6 +82,7 @@
       <DependentUpon>eDiaryModel.tt</DependentUpon>
     </Compile>
     <Compile Include="LoginViewModel.cs" />
+    <Compile Include="MainViewModel.cs" />
     <Compile Include="Score.cs">
       <DependentUpon>eDiaryModel.tt</DependentUpon>
     </Compile>

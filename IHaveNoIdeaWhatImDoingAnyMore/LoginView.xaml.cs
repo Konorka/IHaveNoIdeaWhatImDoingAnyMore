@@ -19,11 +19,12 @@ namespace IHaveNoIdeaWhatImDoingAnyMore
     /// </summary>
     public partial class LoginView : Window
     {
-        
+        readonly bool _onLogout;
         public LoginViewModel ViewModel { get; }
-        public LoginView()
+
+        public LoginView(bool onLogout = false)
         {
-            
+            _onLogout = onLogout;
             InitializeComponent();
             ViewModel = new LoginViewModel();
             DataContext = ViewModel;
@@ -31,12 +32,10 @@ namespace IHaveNoIdeaWhatImDoingAnyMore
 
         private void LoginBtnClick(object sender, RoutedEventArgs e)
         {
-            MainWindow _mw = new MainWindow();
             ViewModel.Password = passwordPasswordBox.Password;
             if (ViewModel.Login())
             {
                 Close();
-                _mw.Show();
             }
             else
                 MessageBox.Show("Nem megfelelő adatok");

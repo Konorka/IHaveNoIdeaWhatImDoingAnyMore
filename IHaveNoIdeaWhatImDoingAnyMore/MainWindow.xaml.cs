@@ -20,9 +20,33 @@ namespace IHaveNoIdeaWhatImDoingAnyMore
     /// </summary>
     public partial class MainWindow : Window
     {
+        readonly MainViewModel _vm;
+        LoginView _lv = new LoginView();
         public MainWindow()
         {
             InitializeComponent();
+            var loginView = new LoginView();
+            loginView.ShowDialog();
+
+            _vm = new MainViewModel
+            {
+                user = loginView.ViewModel.AuthenticatedUser
+            };
+            DataContext = _vm;
+        }
+
+        private void LogoutBtnClick(object sender, RoutedEventArgs e)
+        {
+            var loginView = new LoginView(true);
+            Close();
+            loginView.ShowDialog();
+            if (loginView.ViewModel.AuthenticatedUser != null)
+            {
+                _vm.user = loginView.ViewModel.AuthenticatedUser;
+                Show();
+            }
+            else
+                Close();
         }
     }
 }
