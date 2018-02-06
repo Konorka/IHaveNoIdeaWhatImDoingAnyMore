@@ -24,15 +24,24 @@ namespace IHaveNoIdeaWhatImDoingAnyMore
         LoginView _lv = new LoginView();
         public MainWindow()
         {
-            InitializeComponent();
-            var loginView = new LoginView();
-            loginView.ShowDialog();
-
-            _vm = new MainViewModel
+            try
             {
+                InitializeComponent();
+                var loginView = new LoginView();
+                loginView.ShowDialog();
+                 _vm = new MainViewModel
+                 {
                 user = loginView.ViewModel.AuthenticatedUser
-            };
-            DataContext = _vm;
+                  };
+             DataContext = _vm;
+            nameTextBox.Content = _vm.user.username;
+            }
+            catch (Exception)
+            {
+
+                Close();
+            }
+           
         }
 
         private void LogoutBtnClick(object sender, RoutedEventArgs e)
