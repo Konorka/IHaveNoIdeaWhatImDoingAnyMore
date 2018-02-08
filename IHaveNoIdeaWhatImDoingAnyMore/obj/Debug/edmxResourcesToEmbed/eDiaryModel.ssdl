@@ -73,9 +73,9 @@
     <Key>
       <PropertyRef Name="user_id" />
     </Key>
-    <Property Name="user_id" Type="bigint" Nullable="false" />
-    <Property Name="username" Type="varchar" MaxLength="20" Nullable="false" />
-    <Property Name="password" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="user_access_rank" Type="int" Nullable="false" />
   </EntityType>
   <EntityContainer Name="eDiaryModelStoreContainer">

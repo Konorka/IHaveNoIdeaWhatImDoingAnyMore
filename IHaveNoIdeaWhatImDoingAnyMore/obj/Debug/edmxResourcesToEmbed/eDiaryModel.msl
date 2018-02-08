@@ -79,10 +79,10 @@
     <EntitySetMapping Name="User">
       <EntityTypeMapping TypeName="eDiaryModel.User">
         <MappingFragment StoreEntitySet="User">
-          <ScalarProperty Name="user_id" ColumnName="user_id" />
-          <ScalarProperty Name="username" ColumnName="username" />
-          <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="user_access_rank" ColumnName="user_access_rank" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

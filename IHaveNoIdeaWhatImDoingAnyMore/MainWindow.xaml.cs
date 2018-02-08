@@ -38,18 +38,20 @@ namespace IHaveNoIdeaWhatImDoingAnyMore
                     user = loginView.ViewModel.AuthenticatedUser
                  };             
                  DataContext = _vm;
+                if (_vm.user.user_access_rank == 1)
+                {
+                    Hide();
+                    _av.Show();
+                }
+                nameTextBox.Content = _vm.user.username;
             }
             catch (Exception)
             {
 
                 Hide();
             }         
-                nameTextBox.Content = _vm.user.username;
-                if (_vm.user.user_access_rank == 1)
-                {
-                    Hide();
-                    _av.Show();
-                }
+               
+                
  
         }
 
@@ -58,15 +60,20 @@ namespace IHaveNoIdeaWhatImDoingAnyMore
 
             IHaveNoIdeaWhatImDoingAnyMore.eDiaryDataSet eDiaryDataSet = ((IHaveNoIdeaWhatImDoingAnyMore.eDiaryDataSet)(this.FindResource("eDiaryDataSet")));
             // Load data into the table Class. You can modify this code as needed.
-            IHaveNoIdeaWhatImDoingAnyMore.eDiaryDataSetTableAdapters.ClassTableAdapter eDiaryDataSetClassTableAdapter = new IHaveNoIdeaWhatImDoingAnyMore.eDiaryDataSetTableAdapters.ClassTableAdapter();
+            IHaveNoIdeaWhatImDoingAnyMore.eDiaryDataSet1TableAdapters.ClassTableAdapter eDiaryDataSetClassTableAdapter = new IHaveNoIdeaWhatImDoingAnyMore.eDiaryDataSet1TableAdapters.ClassTableAdapter();
             eDiaryDataSetClassTableAdapter.Fill(eDiaryDataSet.Class);
             System.Windows.Data.CollectionViewSource classViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("classViewSource")));
             classViewSource.View.MoveCurrentToFirst();
             // Load data into the table Student. You can modify this code as needed.
-            IHaveNoIdeaWhatImDoingAnyMore.eDiaryDataSetTableAdapters.StudentTableAdapter eDiaryDataSetStudentTableAdapter = new IHaveNoIdeaWhatImDoingAnyMore.eDiaryDataSetTableAdapters.StudentTableAdapter();
+            IHaveNoIdeaWhatImDoingAnyMore.eDiaryDataSet1TableAdapters.StudentTableAdapter eDiaryDataSetStudentTableAdapter = new IHaveNoIdeaWhatImDoingAnyMore.eDiaryDataSet1TableAdapters.StudentTableAdapter();
             eDiaryDataSetStudentTableAdapter.Fill(eDiaryDataSet.Student);
             System.Windows.Data.CollectionViewSource classStudentViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("classStudentViewSource")));
             classStudentViewSource.View.MoveCurrentToFirst();
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            Environment.Exit(1);
         }
     }
 }

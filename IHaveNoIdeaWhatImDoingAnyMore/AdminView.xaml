@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IHaveNoIdeaWhatImDoingAnyMore"
         mc:Ignorable="d"
-        Title="AdminView" Height="490.186" Width="753.48" Loaded="Window_Loaded">
+        Title="AdminView" Height="490.186" Width="753.48" Loaded="Window_Loaded" Closing="Window_Closing">
     <Window.Resources>
         <local:eDiaryDataSet x:Key="eDiaryDataSet"/>
         <CollectionViewSource x:Key="studentViewSource" Source="{Binding Student, Source={StaticResource eDiaryDataSet}}"/>

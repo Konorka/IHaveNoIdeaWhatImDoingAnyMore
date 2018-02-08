@@ -79,18 +79,10 @@
       <DependentUpon>eDiaryModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataManager.cs" />
-    <Compile Include="eDiaryDataSet.cs">
-      <DependentUpon>eDiaryDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="eDiaryDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>eDiaryDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="eDiaryDataSet1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>eDiaryDataSet1.xsd</DependentUpon>
     </Compile>
     <Compile Include="eDiaryModel.cs">
       <AutoGen>True</AutoGen>
@@ -184,17 +176,6 @@
     </None>
     <None Include="eDiaryDataSet.xss">
       <DependentUpon>eDiaryDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="eDiaryDataSet1.xsc">
-      <DependentUpon>eDiaryDataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="eDiaryDataSet1.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>eDiaryDataSet1.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="eDiaryDataSet1.xss">
-      <DependentUpon>eDiaryDataSet1.xsd</DependentUpon>
     </None>
     <None Include="eDiaryModel.edmx.diagram">
       <DependentUpon>eDiaryModel.edmx</DependentUpon>

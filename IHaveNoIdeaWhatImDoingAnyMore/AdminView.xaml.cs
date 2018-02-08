@@ -20,8 +20,9 @@ namespace IHaveNoIdeaWhatImDoingAnyMore
     public partial class AdminView : Window
     {
         eDiaryDataSet eDiaryDataSet = new eDiaryDataSet();
-        eDiaryDataSetTableAdapters.StudentTableAdapter StudentContext = new eDiaryDataSetTableAdapters.StudentTableAdapter();
-        eDiaryDataSetTableAdapters.TeacherTableAdapter TeacherContext = new eDiaryDataSetTableAdapters.TeacherTableAdapter();
+
+        eDiaryDataSet1TableAdapters.StudentTableAdapter StudentContext = new eDiaryDataSet1TableAdapters.StudentTableAdapter();
+        eDiaryDataSet1TableAdapters.TeacherTableAdapter TeacherContext = new eDiaryDataSet1TableAdapters.TeacherTableAdapter();
 
         public AdminView()
         {
@@ -73,6 +74,11 @@ namespace IHaveNoIdeaWhatImDoingAnyMore
             {
                 e.Cancel = true;
             }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Environment.Exit(1);
         }
     }
 }

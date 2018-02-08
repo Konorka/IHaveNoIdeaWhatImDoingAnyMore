@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="eDiaryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="eDiaryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Class">
           <Key>
             <PropertyRef Name="class_id" />
@@ -78,9 +78,9 @@
           <Key>
             <PropertyRef Name="user_id" />
           </Key>
-          <Property Name="user_id" Type="bigint" Nullable="false" />
-          <Property Name="username" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="password" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="user_access_rank" Type="int" Nullable="false" />
         </EntityType>
         <EntityContainer Name="eDiaryModelStoreContainer">
@@ -92,8 +92,7 @@
           <EntitySet Name="Test" EntityType="Self.Test" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="eDiaryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -166,15 +165,6 @@
           <Property Name="test_lesson_id" Type="Int32" Nullable="false" />
           <Property Name="test_date" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="user_id" />
-          </Key>
-          <Property Name="user_id" Type="Int64" Nullable="false" />
-          <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="user_access_rank" Type="Int32" Nullable="false" />
-        </EntityType>
         <EntityContainer Name="eDiaryDBModel" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Class" EntityType="Self.Class" />
           <EntitySet Name="Lesson" EntityType="Self.Lesson" />
@@ -182,8 +172,17 @@
           <EntitySet Name="Student" EntityType="Self.Student" />
           <EntitySet Name="Teacher" EntityType="Self.Teacher" />
           <EntitySet Name="Test" EntityType="Self.Test" />
-          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="User" EntityType="eDiaryModel.User" />
         </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="user_access_rank" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -268,10 +267,10 @@
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="eDiaryModel.User">
               <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
-                <ScalarProperty Name="username" ColumnName="username" />
-                <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="user_access_rank" ColumnName="user_access_rank" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -69,15 +69,6 @@
     <Property Name="test_lesson_id" Type="Int32" Nullable="false" />
     <Property Name="test_date" Type="DateTime" Nullable="false" Precision="0" />
   </EntityType>
-  <EntityType Name="User">
-    <Key>
-      <PropertyRef Name="user_id" />
-    </Key>
-    <Property Name="user_id" Type="Int64" Nullable="false" />
-    <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="user_access_rank" Type="Int32" Nullable="false" />
-  </EntityType>
   <EntityContainer Name="eDiaryDBModel" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Class" EntityType="Self.Class" />
     <EntitySet Name="Lesson" EntityType="Self.Lesson" />
@@ -85,6 +76,15 @@
     <EntitySet Name="Student" EntityType="Self.Student" />
     <EntitySet Name="Teacher" EntityType="Self.Teacher" />
     <EntitySet Name="Test" EntityType="Self.Test" />
-    <EntitySet Name="User" EntityType="Self.User" />
+    <EntitySet Name="User" EntityType="eDiaryModel.User" />
   </EntityContainer>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="username" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="user_access_rank" Type="Int32" Nullable="false" />
+  </EntityType>
 </Schema>

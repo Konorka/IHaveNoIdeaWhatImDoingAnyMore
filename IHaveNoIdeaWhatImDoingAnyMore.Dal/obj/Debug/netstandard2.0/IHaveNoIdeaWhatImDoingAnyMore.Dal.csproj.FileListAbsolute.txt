@@ -1,9 +1,9 @@
 C:\Users\konor\Desktop\test\IHaveNoIdeaWhatImDoingAnyMore\IHaveNoIdeaWhatImDoingAnyMore.Dal\bin\Debug\netstandard2.0\IHaveNoIdeaWhatImDoingAnyMore.Dal.deps.json
 C:\Users\konor\Desktop\test\IHaveNoIdeaWhatImDoingAnyMore\IHaveNoIdeaWhatImDoingAnyMore.Dal\bin\Debug\netstandard2.0\IHaveNoIdeaWhatImDoingAnyMore.Dal.dll
 C:\Users\konor\Desktop\test\IHaveNoIdeaWhatImDoingAnyMore\IHaveNoIdeaWhatImDoingAnyMore.Dal\bin\Debug\netstandard2.0\IHaveNoIdeaWhatImDoingAnyMore.Dal.pdb
-C:\Users\konor\Desktop\test\IHaveNoIdeaWhatImDoingAnyMore\IHaveNoIdeaWhatImDoingAnyMore.Dal\obj\Debug\netstandard2.0\IHaveNoIdeaWhatImDoingAnyMore.Dal.csprojResolveAssemblyReference.cache
 C:\Users\konor\Desktop\test\IHaveNoIdeaWhatImDoingAnyMore\IHaveNoIdeaWhatImDoingAnyMore.Dal\obj\Debug\netstandard2.0\IHaveNoIdeaWhatImDoingAnyMore.Dal.csproj.CoreCompileInputs.cache
 C:\Users\konor\Desktop\test\IHaveNoIdeaWhatImDoingAnyMore\IHaveNoIdeaWhatImDoingAnyMore.Dal\obj\Debug\netstandard2.0\IHaveNoIdeaWhatImDoingAnyMore.Dal.AssemblyInfoInputs.cache
 C:\Users\konor\Desktop\test\IHaveNoIdeaWhatImDoingAnyMore\IHaveNoIdeaWhatImDoingAnyMore.Dal\obj\Debug\netstandard2.0\IHaveNoIdeaWhatImDoingAnyMore.Dal.AssemblyInfo.cs
 C:\Users\konor\Desktop\test\IHaveNoIdeaWhatImDoingAnyMore\IHaveNoIdeaWhatImDoingAnyMore.Dal\obj\Debug\netstandard2.0\IHaveNoIdeaWhatImDoingAnyMore.Dal.dll
 C:\Users\konor\Desktop\test\IHaveNoIdeaWhatImDoingAnyMore\IHaveNoIdeaWhatImDoingAnyMore.Dal\obj\Debug\netstandard2.0\IHaveNoIdeaWhatImDoingAnyMore.Dal.pdb
+C:\Users\konor\Desktop\test\IHaveNoIdeaWhatImDoingAnyMore\IHaveNoIdeaWhatImDoingAnyMore.Dal\obj\Debug\netstandard2.0\IHaveNoIdeaWhatImDoingAnyMore.Dal.csprojResolveAssemblyReference.cache

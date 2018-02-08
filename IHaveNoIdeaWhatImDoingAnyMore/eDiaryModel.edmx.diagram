@@ -11,7 +11,7 @@
         <EntityTypeShape EntityType="eDiaryModel.Student" Width="1.5" PointX="10.875" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="eDiaryModel.Teacher" Width="1.5" PointX="9" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="eDiaryModel.Test" Width="1.5" PointX="4.625" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="eDiaryModel.User" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="eDiaryModel.User" Width="1.5" PointX="6.75" PointY="0.875" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

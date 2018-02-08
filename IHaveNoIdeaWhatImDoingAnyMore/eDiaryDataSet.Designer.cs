@@ -20,7 +20,7 @@ namespace IHaveNoIdeaWhatImDoingAnyMore {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("eDiaryDataSet")]
+    [global::System.Xml.Serialization.XmlRootAttribute("eDiaryDataSet1")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
     public partial class eDiaryDataSet : global::System.Data.DataSet {
         
@@ -38,7 +38,13 @@ namespace IHaveNoIdeaWhatImDoingAnyMore {
         
         private UserDataTable tableUser;
         
+        private global::System.Data.DataRelation relationStudentUser;
+        
+        private global::System.Data.DataRelation relationTeacherUser;
+        
         private global::System.Data.DataRelation relationStudentClass;
+        
+        private global::System.Data.DataRelation relationHeadTeacherClass;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -340,15 +346,18 @@ namespace IHaveNoIdeaWhatImDoingAnyMore {
                     this.tableUser.InitVars();
                 }
             }
+            this.relationStudentUser = this.Relations["StudentUser"];
+            this.relationTeacherUser = this.Relations["TeacherUser"];
             this.relationStudentClass = this.Relations["StudentClass"];
+            this.relationHeadTeacherClass = this.Relations["HeadTeacherClass"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "eDiaryDataSet";
+            this.DataSetName = "eDiaryDataSet1";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/eDiaryDataSet.xsd";
+            this.Namespace = "http://tempuri.org/eDiaryDataSet1.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableClass = new ClassDataTable();
@@ -365,10 +374,22 @@ namespace IHaveNoIdeaWhatImDoingAnyMore {
             base.Tables.Add(this.tableTest);
             this.tableUser = new UserDataTable();
             base.Tables.Add(this.tableUser);
+            this.relationStudentUser = new global::System.Data.DataRelation("StudentUser", new global::System.Data.DataColumn[] {
+                        this.tableUser.user_idColumn}, new global::System.Data.DataColumn[] {
+                        this.tableStudent.student_user_idColumn}, false);
+            this.Relations.Add(this.relationStudentUser);
+            this.relationTeacherUser = new global::System.Data.DataRelation("TeacherUser", new global::System.Data.DataColumn[] {
+                        this.tableUser.user_idColumn}, new global::System.Data.DataColumn[] {
+                        this.tableTeacher.teacher_user_idColumn}, false);
+            this.Relations.Add(this.relationTeacherUser);
             this.relationStudentClass = new global::System.Data.DataRelation("StudentClass", new global::System.Data.DataColumn[] {
                         this.tableClass.class_idColumn}, new global::System.Data.DataColumn[] {
                         this.tableStudent.student_class_idColumn}, false);
             this.Relations.Add(this.relationStudentClass);
+            this.relationHeadTeacherClass = new global::System.Data.DataRelation("HeadTeacherClass", new global::System.Data.DataColumn[] {
+                        this.tableClass.class_idColumn}, new global::System.Data.DataColumn[] {
+                        this.tableTeacher.teacher_class_idColumn}, false);
+            this.Relations.Add(this.relationHeadTeacherClass);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1557,7 +1578,7 @@ namespace IHaveNoIdeaWhatImDoingAnyMore {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public StudentRow AddStudentRow(long student_om_id, long student_id, string student_first_name, string student_last_name, System.DateTime student_birth_date, string student_gender, string student_city, int student_zip, string student_home_address, string student_email, string student_home_phone, string student_mobile, ClassRow parentClassRowByStudentClass, int student_user_id) {
+            public StudentRow AddStudentRow(long student_om_id, long student_id, string student_first_name, string student_last_name, System.DateTime student_birth_date, string student_gender, string student_city, int student_zip, string student_home_address, string student_email, string student_home_phone, string student_mobile, ClassRow parentClassRowByStudentClass, UserRow parentUserRowByStudentUser) {
                 StudentRow rowStudentRow = ((StudentRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         student_om_id,
@@ -1573,9 +1594,12 @@ namespace IHaveNoIdeaWhatImDoingAnyMore {
                         student_home_phone,
                         student_mobile,
                         null,
-                        student_user_id};
+                        null};
                 if ((parentClassRowByStudentClass != null)) {
                     columnValuesArray[12] = parentClassRowByStudentClass[0];
+                }
+                if ((parentUserRowByStudentUser != null)) {
+                    columnValuesArray[13] = parentUserRowByStudentUser[0];
                 }
                 rowStudentRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowStudentRow);
@@ -2018,7 +2042,7 @@ namespace IHaveNoIdeaWhatImDoingAnyMore {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public TeacherRow AddTeacherRow(long teacher_om_id, string teacher_first_name, string teacher_last_name, System.DateTime teacher_birth_date, string teacher_gender, string teacher_city, int teacher_zip, string teacher_home_address, string teacher_email, string teacher_home_phone, string teacher_mobile, int teacher_class_id, int teacher_lesson_id, int teacher_user_id) {
+            public TeacherRow AddTeacherRow(long teacher_om_id, string teacher_first_name, string teacher_last_name, System.DateTime teacher_birth_date, string teacher_gender, string teacher_city, int teacher_zip, string teacher_home_address, string teacher_email, string teacher_home_phone, string teacher_mobile, ClassRow parentClassRowByHeadTeacherClass, int teacher_lesson_id, UserRow parentUserRowByTeacherUser) {
                 TeacherRow rowTeacherRow = ((TeacherRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         teacher_om_id,
@@ -2032,9 +2056,15 @@ namespace IHaveNoIdeaWhatImDoingAnyMore {
                         teacher_email,
                         teacher_home_phone,
                         teacher_mobile,
-                        teacher_class_id,
+                        null,
                         teacher_lesson_id,
-                        teacher_user_id};
+                        null};
+                if ((parentClassRowByHeadTeacherClass != null)) {
+                    columnValuesArray[11] = parentClassRowByHeadTeacherClass[0];
+                }
+                if ((parentUserRowByTeacherUser != null)) {
+                    columnValuesArray[13] = parentUserRowByTeacherUser[0];
+                }
                 rowTeacherRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTeacherRow);
                 return rowTeacherRow;
@@ -2663,7 +2693,7 @@ namespace IHaveNoIdeaWhatImDoingAnyMore {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public UserRow AddUserRow(long user_id, string username, string password, int user_access_rank) {
+            public UserRow AddUserRow(int user_id, string username, string password, int user_access_rank) {
                 UserRow rowUserRow = ((UserRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         user_id,
@@ -2677,7 +2707,7 @@ namespace IHaveNoIdeaWhatImDoingAnyMore {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public UserRow FindByuser_id(long user_id) {
+            public UserRow FindByuser_id(int user_id) {
                 return ((UserRow)(this.Rows.Find(new object[] {
                             user_id})));
             }
@@ -2708,7 +2738,7 @@ namespace IHaveNoIdeaWhatImDoingAnyMore {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             private void InitClass() {
-                this.columnuser_id = new global::System.Data.DataColumn("user_id", typeof(long), null, global::System.Data.MappingType.Element);
+                this.columnuser_id = new global::System.Data.DataColumn("user_id", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnuser_id);
                 this.columnusername = new global::System.Data.DataColumn("username", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnusername);
@@ -2721,9 +2751,9 @@ namespace IHaveNoIdeaWhatImDoingAnyMore {
                 this.columnuser_id.AllowDBNull = false;
                 this.columnuser_id.Unique = true;
                 this.columnusername.AllowDBNull = false;
-                this.columnusername.MaxLength = 20;
+                this.columnusername.MaxLength = 30;
                 this.columnpassword.AllowDBNull = false;
-                this.columnpassword.MaxLength = 20;
+                this.columnpassword.MaxLength = 30;
                 this.columnuser_access_rank.AllowDBNull = false;
             }
             
@@ -2912,6 +2942,17 @@ namespace IHaveNoIdeaWhatImDoingAnyMore {
                 }
                 else {
                     return ((StudentRow[])(base.GetChildRows(this.Table.ChildRelations["StudentClass"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public TeacherRow[] GetTeacherRows() {
+                if ((this.Table.ChildRelations["HeadTeacherClass"] == null)) {
+                    return new TeacherRow[0];
+                }
+                else {
+                    return ((TeacherRow[])(base.GetChildRows(this.Table.ChildRelations["HeadTeacherClass"])));
                 }
             }
         }
@@ -3197,6 +3238,17 @@ namespace IHaveNoIdeaWhatImDoingAnyMore {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public UserRow UserRow {
+                get {
+                    return ((UserRow)(this.GetParentRow(this.Table.ParentRelations["StudentUser"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["StudentUser"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public ClassRow ClassRow {
                 get {
                     return ((ClassRow)(this.GetParentRow(this.Table.ParentRelations["StudentClass"])));
@@ -3433,6 +3485,28 @@ namespace IHaveNoIdeaWhatImDoingAnyMore {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public UserRow UserRow {
+                get {
+                    return ((UserRow)(this.GetParentRow(this.Table.ParentRelations["TeacherUser"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["TeacherUser"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public ClassRow ClassRow {
+                get {
+                    return ((ClassRow)(this.GetParentRow(this.Table.ParentRelations["HeadTeacherClass"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["HeadTeacherClass"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool Isteacher_emailNull() {
                 return this.IsNull(this.tableTeacher.teacher_emailColumn);
             }
@@ -3544,9 +3618,9 @@ namespace IHaveNoIdeaWhatImDoingAnyMore {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public long user_id {
+            public int user_id {
                 get {
-                    return ((long)(this[this.tableUser.user_idColumn]));
+                    return ((int)(this[this.tableUser.user_idColumn]));
                 }
                 set {
                     this[this.tableUser.user_idColumn] = value;
@@ -3583,6 +3657,28 @@ namespace IHaveNoIdeaWhatImDoingAnyMore {
                 }
                 set {
                     this[this.tableUser.user_access_rankColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public StudentRow[] GetStudentRows() {
+                if ((this.Table.ChildRelations["StudentUser"] == null)) {
+                    return new StudentRow[0];
+                }
+                else {
+                    return ((StudentRow[])(base.GetChildRows(this.Table.ChildRelations["StudentUser"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public TeacherRow[] GetTeacherRows() {
+                if ((this.Table.ChildRelations["TeacherUser"] == null)) {
+                    return new TeacherRow[0];
+                }
+                else {
+                    return ((TeacherRow[])(base.GetChildRows(this.Table.ChildRelations["TeacherUser"])));
                 }
             }
         }
@@ -3826,7 +3922,7 @@ namespace IHaveNoIdeaWhatImDoingAnyMore {
         }
     }
 }
-namespace IHaveNoIdeaWhatImDoingAnyMore.eDiaryDataSetTableAdapters {
+namespace IHaveNoIdeaWhatImDoingAnyMore.eDiaryDataSet1TableAdapters {
     
     
     /// <summary>
@@ -6605,7 +6701,7 @@ SELECT test_id, test_lesson_id, test_date FROM Test WHERE (test_id = @test_id)";
                 " @Original_username) AND ([password] = @Original_password) AND ([user_access_ran" +
                 "k] = @Original_user_access_rank))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_user_id", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "user_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_user_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "user_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_username", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "username", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_password", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "password", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_user_access_rank", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "user_access_rank", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -6615,7 +6711,7 @@ SELECT test_id, test_lesson_id, test_date FROM Test WHERE (test_id = @test_id)";
                 "VALUES (@user_id, @username, @password, @user_access_rank);\r\nSELECT user_id, use" +
                 "rname, password, user_access_rank FROM [User] WHERE (user_id = @user_id)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@user_id", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "user_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@user_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "user_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@username", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "username", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@password", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "password", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@user_access_rank", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "user_access_rank", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -6624,11 +6720,11 @@ SELECT test_id, test_lesson_id, test_date FROM Test WHERE (test_id = @test_id)";
             this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[User] SET [user_id] = @user_id, [username] = @username, [password] = @password, [user_access_rank] = @user_access_rank WHERE (([user_id] = @Original_user_id) AND ([username] = @Original_username) AND ([password] = @Original_password) AND ([user_access_rank] = @Original_user_access_rank));
 SELECT user_id, username, password, user_access_rank FROM [User] WHERE (user_id = @user_id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@user_id", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "user_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@user_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "user_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@username", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "username", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@password", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "password", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@user_access_rank", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "user_access_rank", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_user_id", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "user_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_user_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "user_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_username", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "username", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_password", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "password", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_user_access_rank", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "user_access_rank", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -6708,8 +6804,8 @@ SELECT user_id, username, password, user_access_rank FROM [User] WHERE (user_id 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(long Original_user_id, string Original_username, string Original_password, int Original_user_access_rank) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((long)(Original_user_id));
+        public virtual int Delete(int Original_user_id, string Original_username, string Original_password, int Original_user_access_rank) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_user_id));
             if ((Original_username == null)) {
                 throw new global::System.ArgumentNullException("Original_username");
             }
@@ -6743,8 +6839,8 @@ SELECT user_id, username, password, user_access_rank FROM [User] WHERE (user_id 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(long user_id, string username, string password, int user_access_rank) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((long)(user_id));
+        public virtual int Insert(int user_id, string username, string password, int user_access_rank) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(user_id));
             if ((username == null)) {
                 throw new global::System.ArgumentNullException("username");
             }
@@ -6778,8 +6874,8 @@ SELECT user_id, username, password, user_access_rank FROM [User] WHERE (user_id 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(long user_id, string username, string password, int user_access_rank, long Original_user_id, string Original_username, string Original_password, int Original_user_access_rank) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((long)(user_id));
+        public virtual int Update(int user_id, string username, string password, int user_access_rank, int Original_user_id, string Original_username, string Original_password, int Original_user_access_rank) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(user_id));
             if ((username == null)) {
                 throw new global::System.ArgumentNullException("username");
             }
@@ -6793,7 +6889,7 @@ SELECT user_id, username, password, user_access_rank FROM [User] WHERE (user_id 
                 this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(password));
             }
             this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(user_access_rank));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((long)(Original_user_id));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_user_id));
             if ((Original_username == null)) {
                 throw new global::System.ArgumentNullException("Original_username");
             }
@@ -6827,7 +6923,7 @@ SELECT user_id, username, password, user_access_rank FROM [User] WHERE (user_id 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string username, string password, int user_access_rank, long Original_user_id, string Original_username, string Original_password, int Original_user_access_rank) {
+        public virtual int Update(string username, string password, int user_access_rank, int Original_user_id, string Original_username, string Original_password, int Original_user_access_rank) {
             return this.Update(Original_user_id, username, password, user_access_rank, Original_user_id, Original_username, Original_password, Original_user_access_rank);
         }
     }
@@ -7072,6 +7168,15 @@ SELECT user_id, username, password, user_access_rank FROM [User] WHERE (user_id 
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._userTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.User.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._userTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._lessonTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.Lesson.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -7117,15 +7222,6 @@ SELECT user_id, username, password, user_access_rank FROM [User] WHERE (user_id 
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._userTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.User.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._userTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             return result;
         }
         
@@ -7141,6 +7237,14 @@ SELECT user_id, username, password, user_access_rank FROM [User] WHERE (user_id 
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._classTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._userTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.User.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._userTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -7184,14 +7288,6 @@ SELECT user_id, username, password, user_access_rank FROM [User] WHERE (user_id 
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._userTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.User.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._userTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             return result;
         }
         
@@ -7202,14 +7298,6 @@ SELECT user_id, username, password, user_access_rank FROM [User] WHERE (user_id 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private int UpdateDeletedRows(eDiaryDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._userTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.User.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._userTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._testTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.Test.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -7247,6 +7335,14 @@ SELECT user_id, username, password, user_access_rank FROM [User] WHERE (user_id 
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._lessonTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._userTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.User.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._userTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
