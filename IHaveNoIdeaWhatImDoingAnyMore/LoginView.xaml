@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IHaveNoIdeaWhatImDoingAnyMore"
         mc:Ignorable="d"
-        Title="LoginView" Height="258.239" Width="220.739">
+        Title="LoginView" Height="258.239" Width="220.739" Closing="CloseBtnClick">
     <Grid  Background="#2e3137">
         <TextBox Text="{Binding Username}" x:Name="usernameTextBox" HorizontalAlignment="Left" Background="#545d6a" Foreground="White" Height="23" Margin="10,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="185"/>
         <PasswordBox x:Name="passwordPasswordBox"  HorizontalAlignment="Left"  Background="#545d6a" Foreground="White" Margin="10,113,0,0" VerticalAlignment="Top" Width="185" Height="24"/>

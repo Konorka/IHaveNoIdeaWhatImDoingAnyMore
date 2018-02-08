@@ -5,9 +5,53 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IHaveNoIdeaWhatImDoingAnyMore"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        <Button Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="432,10,0,0" Click="LogoutBtnClick"/>
-        <Label x:Name="nameTextBox" HorizontalAlignment="Left" Margin="252,35,0,0" VerticalAlignment="Top" Width="63" HorizontalContentAlignment="Right" Height="25"/>
+        Title="MainWindow" Height="350" Width="525" Loaded="Window_Loaded">
+    <Window.Resources>
+        <local:eDiaryDataSet x:Key="eDiaryDataSet"/>
+        <CollectionViewSource x:Key="classViewSource" Source="{Binding Class, Source={StaticResource eDiaryDataSet}}"/>
+        <CollectionViewSource x:Key="classStudentViewSource" Source="{Binding StudentClass, Source={StaticResource classViewSource}}"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource classViewSource}">
+        <Label x:Name="nameTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="63" HorizontalContentAlignment="Right" Height="25" Margin="10,10,0,0"/>
+        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="0,43,0,0" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="Osztály" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <ComboBox x:Name="class_nameComboBox" Grid.Column="1" DisplayMemberPath="class_name" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="120">
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel/>
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
+            </ComboBox>
+        </Grid>
+        <DataGrid x:Name="studentDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource classStudentViewSource}}" Margin="10,80,10,39" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+
+                <DataGridTextColumn x:Name="student_first_nameColumn" Binding="{ Binding student_first_name}" Header="student first name" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="student_last_nameColumn" Binding="{Binding student_last_name}" Header="student last name" Width="SizeToHeader"/>
+                <DataGridTemplateColumn x:Name="student_birth_dateColumn" Header="student birth date" Width="SizeToHeader">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding student_birth_date, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn x:Name="student_genderColumn" Binding="{Binding student_gender}" Header="student gender" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="student_cityColumn" Binding="{Binding student_city}" Header="student city" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="student_zipColumn" Binding="{Binding student_zip}" Header="student zip" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="student_home_addressColumn" Binding="{Binding student_home_address}" Header="student home address" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="student_emailColumn" Binding="{Binding student_email}" Header="student email" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="student_home_phoneColumn" Binding="{Binding student_home_phone}" Header="student home phone" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="student_mobileColumn" Binding="{Binding student_mobile}" Header="student mobile" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="student_class_idColumn" Binding="{Binding student_class_id}" Header="student class id" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="student_user_idColumn" Binding="{Binding student_user_id}" Header="student user id" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

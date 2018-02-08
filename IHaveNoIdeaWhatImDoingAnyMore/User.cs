@@ -11,7 +11,9 @@ namespace IHaveNoIdeaWhatImDoingAnyMore
 {
     using System;
     using System.Collections.Generic;
-    
+
+
+
     public partial class User
     {
         public User(User user)

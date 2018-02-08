@@ -1,0 +1,71 @@
+﻿<Window x:Class="IHaveNoIdeaWhatImDoingAnyMore.AdminView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IHaveNoIdeaWhatImDoingAnyMore"
+        mc:Ignorable="d"
+        Title="AdminView" Height="490.186" Width="753.48" Loaded="Window_Loaded">
+    <Window.Resources>
+        <local:eDiaryDataSet x:Key="eDiaryDataSet"/>
+        <CollectionViewSource x:Key="studentViewSource" Source="{Binding Student, Source={StaticResource eDiaryDataSet}}"/>
+        <CollectionViewSource x:Key="teacherViewSource" Source="{Binding Teacher, Source={StaticResource eDiaryDataSet}}"/>
+    </Window.Resources>
+    <Grid  >
+
+        <Button x:Name="studentOrTeacers" Content="Diákok" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="660,27,0,0" Click="teachersOrStudentsButton"/>
+        <Button Content="Törlés" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="660,429,0,0"/>
+        <Button Content="Szerkesztés" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="580,429,0,0"/>
+        <Button Content="Hozzáadás" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="500,429,0,0"/>
+        <Button x:Name="saveBtn" Content="Mentés" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="0,429,0,0" Click="SaveBtnClick"/>
+
+        <DataGrid DataContext="{StaticResource studentViewSource}" x:Name="studentDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="10,52,10,61" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="student_om_idColumn" Binding="{Binding student_om_id}" Header="OM azonosító" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="student_idColumn" Binding="{Binding student_id}" Header="Diákigazolvány szám" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="student_first_nameColumn" Binding="{Binding student_first_name}" Header="Vezetéknév" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="student_last_nameColumn" Binding="{Binding student_last_name}" Header="Keresztnév" Width="SizeToHeader"/>
+                <DataGridTemplateColumn x:Name="student_birth_dateColumn" Header="Születési Dátum" Width="SizeToHeader">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding student_birth_date, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn x:Name="student_genderColumn" Binding="{Binding student_gender}" Header="Neme" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="student_cityColumn" Binding="{Binding student_city}" Header="Város" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="student_zipColumn" Binding="{Binding student_zip}" Header="Irányítószám" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="student_home_addressColumn" Binding="{Binding student_home_address}" Header="Cím" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="student_emailColumn" Binding="{Binding student_email}" Header="Email Cím" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="student_home_phoneColumn" Binding="{Binding student_home_phone}" Header="Otthoni telefon" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="student_mobileColumn" Binding="{Binding student_mobile}" Header="Mobiltelefon" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="student_class_idColumn" Binding="{Binding student_class_id}" Header="Osztály azonosító" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="student_user_idColumn" Binding="{Binding student_user_id}" Header="Belépési azonosító" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid DataContext="{StaticResource teacherViewSource}" x:Name="teacherDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="10,52,10,61" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="teacher_om_idColumn" Binding="{Binding teacher_om_id}" Header="teacher om id" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="teacher_first_nameColumn" Binding="{Binding teacher_first_name}" Header="teacher first name" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="teacher_last_nameColumn" Binding="{Binding teacher_last_name}" Header="teacher last name" Width="SizeToHeader"/>
+                <DataGridTemplateColumn x:Name="teacher_birth_dateColumn" Header="teacher birth date" Width="SizeToHeader">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding teacher_birth_date, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn x:Name="teacher_genderColumn" Binding="{Binding teacher_gender}" Header="teacher gender" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="teacher_cityColumn" Binding="{Binding teacher_city}" Header="teacher city" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="teacher_zipColumn" Binding="{Binding teacher_zip}" Header="teacher zip" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="teacher_home_addressColumn" Binding="{Binding teacher_home_address}" Header="teacher home address" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="teacher_emailColumn" Binding="{Binding teacher_email}" Header="teacher email" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="teacher_home_phoneColumn" Binding="{Binding teacher_home_phone}" Header="teacher home phone" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="teacher_mobileColumn" Binding="{Binding teacher_mobile}" Header="teacher mobile" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="teacher_class_idColumn" Binding="{Binding teacher_class_id}" Header="teacher class id" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="teacher_lesson_idColumn" Binding="{Binding teacher_lesson_id}" Header="teacher lesson id" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="teacher_user_idColumn" Binding="{Binding teacher_user_id}" Header="teacher user id" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

@@ -40,5 +40,10 @@ namespace IHaveNoIdeaWhatImDoingAnyMore
             else
                 MessageBox.Show("Nem megfelelő adatok");
         }
+
+        private void CloseBtnClick(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            
+        }
     }
 }

@@ -40,6 +40,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.EntityDataSource, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.EntityDataSource.6.0.0\lib\net40\Microsoft.AspNet.EntityDataSource.dll</HintPath>
+    </Reference>
     <Reference Include="MoreLinq, Version=2.10.21623.0, Culture=neutral, PublicKeyToken=384d532d7e88985d, processorArchitecture=MSIL">
       <HintPath>..\packages\morelinq.2.10.0\lib\net40\MoreLinq.dll</HintPath>
     </Reference>
@@ -69,10 +72,26 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AdminView.xaml.cs">
+      <DependentUpon>AdminView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Class.cs">
       <DependentUpon>eDiaryModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataManager.cs" />
+    <Compile Include="eDiaryDataSet.cs">
+      <DependentUpon>eDiaryDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="eDiaryDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>eDiaryDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="eDiaryDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>eDiaryDataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="eDiaryModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -98,6 +117,11 @@
     <Compile Include="User.cs">
       <DependentUpon>eDiaryModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="UserModel.cs" />
+    <Page Include="AdminView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -150,6 +174,28 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>eDiaryModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="eDiaryDataSet.xsc">
+      <DependentUpon>eDiaryDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="eDiaryDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>eDiaryDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="eDiaryDataSet.xss">
+      <DependentUpon>eDiaryDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="eDiaryDataSet1.xsc">
+      <DependentUpon>eDiaryDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="eDiaryDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>eDiaryDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="eDiaryDataSet1.xss">
+      <DependentUpon>eDiaryDataSet1.xsd</DependentUpon>
+    </None>
     <None Include="eDiaryModel.edmx.diagram">
       <DependentUpon>eDiaryModel.edmx</DependentUpon>
     </None>
@@ -176,6 +222,18 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IHaveNoIdeaWhatImDoingAnyMore.Dal\IHaveNoIdeaWhatImDoingAnyMore.Dal.csproj">
+      <Project>{b09d178d-a07b-4596-8919-44caaa0eac91}</Project>
+      <Name>IHaveNoIdeaWhatImDoingAnyMore.Dal</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\DataSources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

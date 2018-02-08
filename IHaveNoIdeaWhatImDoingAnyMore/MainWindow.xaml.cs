@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MoreLinq;
 
 namespace IHaveNoIdeaWhatImDoingAnyMore
 {
@@ -22,6 +23,9 @@ namespace IHaveNoIdeaWhatImDoingAnyMore
     {
         readonly MainViewModel _vm;
         LoginView _lv = new LoginView();
+        AdminView _av = new AdminView();
+        Student student = new Student();
+
         public MainWindow()
         {
             try
@@ -31,31 +35,38 @@ namespace IHaveNoIdeaWhatImDoingAnyMore
                 loginView.ShowDialog();
                  _vm = new MainViewModel
                  {
-                user = loginView.ViewModel.AuthenticatedUser
-                  };
-             DataContext = _vm;
-            nameTextBox.Content = _vm.user.username;
+                    user = loginView.ViewModel.AuthenticatedUser
+                 };             
+                 DataContext = _vm;
             }
             catch (Exception)
             {
 
-                Close();
-            }
-           
+                Hide();
+            }         
+                nameTextBox.Content = _vm.user.username;
+                if (_vm.user.user_access_rank == 1)
+                {
+                    Hide();
+                    _av.Show();
+                }
+ 
         }
 
-        private void LogoutBtnClick(object sender, RoutedEventArgs e)
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            var loginView = new LoginView(true);
-            Close();
-            loginView.ShowDialog();
-            if (loginView.ViewModel.AuthenticatedUser != null)
-            {
-                _vm.user = loginView.ViewModel.AuthenticatedUser;
-                Show();
-            }
-            else
-                Close();
+
+            IHaveNoIdeaWhatImDoingAnyMore.eDiaryDataSet eDiaryDataSet = ((IHaveNoIdeaWhatImDoingAnyMore.eDiaryDataSet)(this.FindResource("eDiaryDataSet")));
+            // Load data into the table Class. You can modify this code as needed.
+            IHaveNoIdeaWhatImDoingAnyMore.eDiaryDataSetTableAdapters.ClassTableAdapter eDiaryDataSetClassTableAdapter = new IHaveNoIdeaWhatImDoingAnyMore.eDiaryDataSetTableAdapters.ClassTableAdapter();
+            eDiaryDataSetClassTableAdapter.Fill(eDiaryDataSet.Class);
+            System.Windows.Data.CollectionViewSource classViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("classViewSource")));
+            classViewSource.View.MoveCurrentToFirst();
+            // Load data into the table Student. You can modify this code as needed.
+            IHaveNoIdeaWhatImDoingAnyMore.eDiaryDataSetTableAdapters.StudentTableAdapter eDiaryDataSetStudentTableAdapter = new IHaveNoIdeaWhatImDoingAnyMore.eDiaryDataSetTableAdapters.StudentTableAdapter();
+            eDiaryDataSetStudentTableAdapter.Fill(eDiaryDataSet.Student);
+            System.Windows.Data.CollectionViewSource classStudentViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("classStudentViewSource")));
+            classStudentViewSource.View.MoveCurrentToFirst();
         }
     }
 }
